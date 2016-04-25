@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app="helloApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin Page</title>
+</head>
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+	<script src="Admin.js"></script>
+	
+<style>
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+}
+body {
+    background-color: #50a3a2;
+}
+</style>
+	
+<body>
+<div ng-controller="CompanyCtrl">
+<div style="padding-bottom:50px">
+			<table style="width:100%">
+				<tr>					
+					<td style="width:45%;padding-left:40px;vertical-align: top">
+						<div style="padding-bottom:20px">
+							<h3>Add a Company</h3>
+						</div>
+						<form class="form-horizontal" role="form" ng-submit="addRow()">
+							<div class="form-group">
+								<label class="col-md-2 control-label">Name :</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+							
+									<input type="text" class="form-control" name="name"
+										ng-model="name" /><br><br>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label">jobprofile :</label>&nbsp&nbsp&nbsp
+					
+									<input type="text" class="form-control" name="jobprofile"
+										ng-model="jobprofile" /><br><br>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-2 control-label">Headoffice :</label>&nbsp
+						
+									<input type="text" class="form-control" name="headoffice"
+										ng-model="headoffice" /><br><br>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div style="padding-left:110px">
+									<input class="button" type="submit" value="Submit" class="btn btn-primary"/><br><br>
+								</div>
+							</div>
+						</form>
+					</td>
+					<td style="vertical-align: top">
+						<table class="table">
+							<tr>
+								<th>Name 
+								</th>&nbsp&nbsp&nbsp
+								<th>jobprofile
+								</th>&nbsp&nbsp&nbsp
+								<th>Head Office
+								</th>&nbsp&nbsp&nbsp
+							</tr>
+							<tr ng-repeat="company in companies">
+								<td>{{company.name}} <br><br>
+								</td>
+								<td>{{company.jobprofile}}<br><br>
+								</td>
+								<td>{{company.headoffice}} <br><br>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<br><br><br>
+			Search By :      <input ng-model="query" type="text"
+        placeholder="Filter by" autofocus>
+        <tr><br/><br/>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp      <th>Name</th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <th>jobprofile</th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <th>Headoffice</th> <br/><br/>
+    </tr>
+    <ul ng-repeat="company in companies | filter:query | orderBy: 'name' ">
+   
+      <li>{{company.name}} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp {{company.jobprofile}}  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp {{company.headoffice}}</li>
+		</div>
+	</div>
+</body>
+</html>

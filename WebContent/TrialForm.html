@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.js"></script>
+</head>
+  <body>
+  <form role="form" ng-app="MyApp" ng-controller="MasterController">
+        <div class="form-group">
+            <label>
+                Username</label>
+
+            <input type="text" class="form-control" placeholder="Username" required ng-model="username" />
+        </div>
+        <div class="form-group">
+            <label>
+                Password</label>
+            <input type="password" class="form-control" placeholder="Password" required ng-model="password" />
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-model="remember">
+                Remember my Password
+            </label>
+        </div>
+        <input type="button" value="Submit" ng-click="GetData()" class="btn btn-danger" />
+        <button type="button" class="btn btn-danger" ng-click="GetData()">Submit</button>
+        <span ng-bind="Message"></span>
+    </form>
+  
+  </body>
+  <script>
+  var myapp = angular.module("MyApp", []);
+  myapp.controller('MasterController', function($scope, $http) {
+  	
+  $scope.GetData = function () {
+     // debugger;
+      var data = { UserName: $scope.username, Password: $scope.password };
+      $http.post("", data)
+     .success(function (data, status, headers, config) {
+         if (data != "") {
+             $scope.Employees = data;
+             window.location.href = "new.html";
+             console.log(data);
+             //$scope.Reporting = data;
+         }
+         else {
+             alert("Invalid Credientials");
+         }
+
+     });
+  }
+  });
+  </script>
+    </html>
